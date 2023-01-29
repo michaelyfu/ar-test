@@ -238,7 +238,7 @@
             clearInterval(timer);
             gameDone = true;
             destCount++;
-            main(destCount);
+            main();
           }
         }, 1000);
       }
@@ -257,7 +257,7 @@
     var targetLat = 0;
     var targetLong = 0;
 
-    function main(destCount) {
+    function main() {
       console.log("hits main");
       // RUN GAME BEGINNING SCRIPT
       coordinates = {
@@ -270,16 +270,16 @@
       var numPoints = Object.keys(coordinates).length;
       // console.log("here");
   
-      if(destCount < numPoints) {
+      if(currCount < numPoints) {
         // console.log("test");
         getLocation();
-        targetLat = lats[count];
-        targetLong = longs[count];
+        targetLat = lats[destCount];
+        targetLong = longs[destCount];
       }
-      else if (destCount === numPoints) {
+      else if (currCount === numPoints) {
       // RUN GAME END SCRIPT
       alert("GAME OVER");
       }
     }
-    main(destCount);
+    main();
 </script>
