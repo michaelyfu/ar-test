@@ -270,13 +270,13 @@
       var numPoints = Object.keys(coordinates).length;
       // console.log("here");
   
-      if(currCount < numPoints) {
+      if(destCount < numPoints) {
         // console.log("test");
         getLocation();
         targetLat = lats[destCount];
         targetLong = longs[destCount];
       }
-      else if (currCount === numPoints) {
+      else if (destCount === numPoints) {
       // RUN GAME END SCRIPT
       alert("GAME OVER");
       }
