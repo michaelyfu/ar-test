@@ -258,6 +258,7 @@
     var targetLong = 0;
 
     function main(destCount) {
+      console.log("doesn't hit main");
       // RUN GAME BEGINNING SCRIPT
       coordinates = {
         41.82625: -71.401897,
@@ -266,9 +267,11 @@
   
       let lats = Object.keys(coordinates);
       let longs = Object.values(coordinates);
-      var numPoints = len(Object.keys(coordinates));
+      var numPoints = Object.keys(coordinates).length;
+      console.log("here");
   
       while(destCount < numPoints) {
+        console.log("test");
         getLocation();
         targetLat = lats[count];
         targetLong = longs[count];
