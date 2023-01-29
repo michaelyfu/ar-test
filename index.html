@@ -198,6 +198,9 @@
       getDistanceFromLatLonInM(lat, long, targetLat, targetLong),
       2
     );
+    console.log('SUCCESS TARGET LAT');
+    console.log(targetLat);
+    console.log(targetLong);
 
     if (!cnt) {
       firstDistance = distance;
@@ -276,7 +279,6 @@
         targetLat = lats[destCount];
         targetLong = longs[destCount];
         console.log("destCount if statement");
-        console.log(targetLat, targetLong);
       }
       else if (destCount === numPoints) {
       // RUN GAME END SCRIPT
