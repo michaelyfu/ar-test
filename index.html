@@ -291,8 +291,8 @@
       if(destCount < numPoints) {
         console.log("destCount", destCount);
         getLocation();
-        targetLat = lats[destCount];
-        targetLong = longs[destCount];
+        targetLat = entities[destCount].lat;
+        targetLong = entities[destCount].lon;
         console.log("destCount if statement");
       }
       else if (destCount === numPoints) {
