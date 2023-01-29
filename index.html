@@ -259,17 +259,34 @@
     var targetLat = 0;
     var targetLong = 0;
 
+  /**
+   * Parses the given URL into latitude and longitude pairs 
+   * @param {String} url the url formatted as .../?entities=lat_lon,lat_lon,...,lat_lon 
+   * @return {List[Dictionary]} a list of {'lat': lat, 'lon', lon} pairs 
+   * 
+   * For example:
+   *  http://.../?entities=41.826835_-71.399710,41.827835_-71.399710
+   *  becomes [{'lat': 41.826835, 'lon': -71.399710}, {'lat': 41.827835, 'lon': -71.399710}]
+   */
+  function parseURL(url){
+      let entities = [];
+      var entities_url = url.split("=")[1];
+      var lat_lon_list = entities_url.split(",");
+      for (const lat_lon_str of lat_lon_list){
+          lat_lon = lat_lon_str.split('_');
+          lat = parseFloat(lat_lon[0]);
+          lon = parseFloat(lat_lon[1]);
+          console.log(`(${lat}, ${lon})`);
+          entities.push({'lat': lat, 'lon': lon});
+      }
+      return entities;
+  }
+
     function main() {
       console.log("hits main");
       // RUN GAME BEGINNING SCRIPT
-      coordinates = {
-        41.8266498: -71.3998557,
-        41.82625: -71.401897,
-      };
-  
-      let lats = Object.keys(coordinates);
-      let longs = Object.values(coordinates);
-      var numPoints = Object.keys(coordinates).length;
+      var entities = parseURL(window.location.search);
+      var numPoints = entities.length;
   
       if(destCount < numPoints) {
         console.log("destCount", destCount);
