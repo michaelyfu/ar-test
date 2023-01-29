@@ -99,6 +99,7 @@
     // document.getElementById("tint").setAttribute("visible", false);
     function stuff() {
       if (gameDone) {
+        document.getElementById("marker").setAttribute("visible", false);
         return;
       }
       count++;
@@ -198,9 +199,7 @@
       getDistanceFromLatLonInM(lat, long, targetLat, targetLong),
       2
     );
-    console.log('SUCCESS TARGET LAT');
-    console.log(targetLat);
-    console.log(targetLong);
+    console.log('SUCCESS TARGET LAT', targetLat, targetLong);
 
     if (!cnt) {
       firstDistance = distance;
@@ -274,7 +273,7 @@
       console.log("after global declarations");
   
       if(destCount < numPoints) {
-        // console.log("test");
+        console.log("destCount", destCount);
         getLocation();
         targetLat = lats[destCount];
         targetLong = longs[destCount];
