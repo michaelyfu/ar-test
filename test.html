@@ -65,7 +65,7 @@
 </body>
 
 <script defer type="text/javascript">
-    function help() {
+    function reachedDest() {
         var count = 0;
         document.getElementById("tint").setAttribute("visible", false);
         function minigame() {
@@ -87,14 +87,14 @@
             count++;
         };
         if(timer === 0) {
-            pointCount++;
-            main(pointCount);
+            destCount++;
+            main(destCount);
         }
         const marker = document.getElementById(`marker`);
         marker.addEventListener("click", minigame);
     }
 
-    getLocation();
+//     getLocation();
 
     document.getElementById("tint").width = window.innerWidth;
     document.getElementById("tint").height = window.innerHeight;
@@ -168,10 +168,10 @@
             i = 5;
         }
         console.log(i);
-        if (i == 0 || i == 1 || i == 3 || i == 4) {
+        if (i == 0 || i == 1) {
             document.getElementById("tint").setAttribute("visible", false);
             document.getElementById("marker").setAttribute("visible", true);
-            help();
+            reachedDest();
         }
         document.getElementById("tint").style.backgroundColor = colorArray[i];
     }
@@ -180,9 +180,9 @@
         console.log('Geolocation error!');
     }
 
-    global var pointCount = 0;
+    global var destCount = 0;
 
-    function main(pointCount) {
+    function main(destCount) {
       // RUN GAME BEGINNING SCRIPT
       coordinates = {
         41.82717898908822: -71.399620771408,
@@ -196,16 +196,15 @@
       global var targetLat = 0;
       global var targetLong = 0;
   
-      while(pointCount < numPoints) {
+      while(destCount < numPoints) {
         getLocation();
         targetLat = lats[count];
         targetLong = longs[count];
       }
-      if numPoints === 0 {
+      if destCount === numPoints {
       // RUN GAME END SCRIPT
       alert("GAME OVER");
       }
     }
-
-
+    main(0);
 </script>
