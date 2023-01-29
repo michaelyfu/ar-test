@@ -64,8 +64,32 @@
     <div id="tint" class="uiblock uiwrapper"></div>
 </body>
 
+<script>
+    function main() {
+      // RUN GAME BEGINNING SCRIPT
+      coordinates = {
+        41.82717898908822: -71.399620771408,
+        41.826965040180966: -71.40018407097854,
+        41.82744072445488: -71.40034500351943,
+      };
+  
+      let lats = Object.keys(coordinates);
+      let longs = Object.values(coordinates);
+      var numPoints = len(Object.keys(coordinates));
+  
+      while(numPoints > 0) {
+          // create new point
+          
+  
+      }
+      if numPoints === 0 {
+      // RUN GAME END SCRIPT
+      }
+    }
+  </script>
+
 <script defer type="text/javascript">
-    function reachedDest() {
+    function help() {
         var count = 0;
         document.getElementById("tint").setAttribute("visible", false);
         function minigame() {
@@ -87,14 +111,13 @@
             count++;
         };
         if(timer === 0) {
-            destCount++;
-            main(destCount);
+            main(numPoints);
         }
         const marker = document.getElementById(`marker`);
         marker.addEventListener("click", minigame);
     }
 
-//     getLocation();
+    getLocation();
 
     document.getElementById("tint").width = window.innerWidth;
     document.getElementById("tint").height = window.innerHeight;
@@ -132,12 +155,12 @@
         return deg * (Math.PI / 180)
     }
 
-      function getLocation() {
+    function getLocation() {
         if (!navigator.geolocation) {
             console.log('Geolocation API not supported by this browser.');
         } else {
             console.log('Checking location...');
-            navigator.geolocation.getCurrentPosition(success(), error);
+            navigator.geolocation.getCurrentPosition(success, error);
         }
         setTimeout(getLocation, 1000);
     }
@@ -145,8 +168,7 @@
     function success(position) {
         let lat = round(position.coords.latitude, 4);
         let long = round(position.coords.longitude, 4);
-        let distance = round(getDistanceFromLatLonInM(lat, long, targetLat, targetLong), 2);
-//         let distance = round(getDistanceFromLatLonInM(lat, long, 41.826250, -71.401897), 2);
+        let distance = round(getDistanceFromLatLonInM(lat, long, 41.826250, -71.401897), 2);
 
         if (!cnt) {
             firstDistance = distance;
@@ -168,10 +190,10 @@
             i = 5;
         }
         console.log(i);
-        if (i == 0 || i == 1) {
+        if (i == 0 || i == 1 || i == 3 || i == 4) {
             document.getElementById("tint").setAttribute("visible", false);
             document.getElementById("marker").setAttribute("visible", true);
-            reachedDest();
+            help();
         }
         document.getElementById("tint").style.backgroundColor = colorArray[i];
     }
@@ -180,31 +202,4 @@
         console.log('Geolocation error!');
     }
 
-    var destCount = 0;
-    var targetLat = 0;
-    var targetLong = 0;
-
-    function main(destCount) {
-      // RUN GAME BEGINNING SCRIPT
-      coordinates = {
-        41.82717898908822: -71.399620771408,
-        41.826965040180966: -71.40018407097854,
-        41.82744072445488: -71.40034500351943,
-      };
-  
-      let lats = Object.keys(coordinates);
-      let longs = Object.values(coordinates);
-      var numPoints = len(Object.keys(coordinates));
-  
-      while(destCount < numPoints) {
-        getLocation();
-        targetLat = lats[count];
-        targetLong = longs[count];
-      }
-      if (destCount === numPoints) {
-      // RUN GAME END SCRIPT
-      alert("GAME OVER");
-      }
-    }
-    main(0);
 </script>
