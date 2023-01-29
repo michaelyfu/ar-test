@@ -190,9 +190,9 @@
   }
 
   function success(position) {
-    // if (foundPlace) {
-    //   return;
-    // }
+    if (foundPlace) {
+      return;
+    }
     let lat = round(position.coords.latitude, 4);
     let long = round(position.coords.longitude, 4);
     let distance = round(
@@ -239,6 +239,7 @@
             document.getElementById("timer").innerText = "00:00";
             clearInterval(timer);
             gameDone = true;
+            foundPlace = false;
             destCount++;
             main();
           }
