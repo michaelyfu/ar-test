@@ -268,13 +268,15 @@
       let lats = Object.keys(coordinates);
       let longs = Object.values(coordinates);
       var numPoints = Object.keys(coordinates).length;
-      // console.log("here");
+      console.log("after global declarations");
   
       if(destCount < numPoints) {
         // console.log("test");
         getLocation();
         targetLat = lats[destCount];
         targetLong = longs[destCount];
+        console.log("destCount if statement");
+        console.log(targetLat, targetLong);
       }
       else if (destCount === numPoints) {
       // RUN GAME END SCRIPT
